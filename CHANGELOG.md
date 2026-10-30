@@ -2,6 +2,10 @@
 - Test on real phone
 - Split long files
 
+0.5.0
+
+  Remove analytics loader
+
 0.4.0
 
   Fix play timer

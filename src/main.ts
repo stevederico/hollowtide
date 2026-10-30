@@ -6,18 +6,6 @@ declare global {
   }
 }
 
-/** Optional analytics, only when both build time variables are set. */
-function loadAnalytics(): void {
-  const src = import.meta.env.VITE_ANALYTICS_SRC;
-  const id = import.meta.env.VITE_ANALYTICS_ID;
-  if (!src || !id) return;
-  const script = document.createElement('script');
-  script.defer = true;
-  script.src = src;
-  script.dataset.websiteId = id;
-  document.head.append(script);
-}
-
 function showFailure(root: HTMLElement, error: unknown): void {
   console.error('Hollowtide could not start', error);
   const panel = document.createElement('section');
@@ -38,7 +26,6 @@ function start(): void {
     const app = new App(canvas, root);
     const isDebug = import.meta.env.DEV || new URLSearchParams(window.location.search).has('debug');
     if (isDebug) window.hollowtide = app;
-    loadAnalytics();
   } catch (error) {
     showFailure(root, error);
   }
